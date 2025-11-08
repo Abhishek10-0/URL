@@ -1,0 +1,20 @@
+attack_type,pattern,description,severity,confidence,score
+SQL_INJECTION,'.*?(or|and).*?=,SQL OR/AND pattern,critical,high,30
+SQL_INJECTION,union.*?select,UNION SELECT,critical,high,30
+SQL_INJECTION,--.*$,SQL comment,critical,high,25
+SQL_INJECTION,;.*?(drop|delete|insert),Dangerous SQL,critical,high,30
+XSS,<script.*?>,Script tag,critical,high,30
+XSS,javascript:,JavaScript protocol,critical,high,30
+XSS,on(load|error|click|mouse).*?=,Event handler,critical,high,25
+XSS,<iframe.*?>,Iframe tag,critical,high,28
+PATH_TRAVERSAL,\.\.\/,Path traversal,critical,high,30
+PATH_TRAVERSAL,etc/passwd,Sensitive file,critical,high,30
+PATH_TRAVERSAL,windows\\system,Windows path,critical,high,28
+COMMAND_INJECTION,[;&|].*?(cat|ls|wget|curl|rm),Command separator,critical,high,30
+COMMAND_INJECTION,\$\(.*?\),Command substitution,critical,high,30
+OPEN_REDIRECT,redirect.*?=.*?http,External redirect,high,medium,20
+LDAP_INJECTION,\*\)\(,LDAP wildcard,high,high,25
+NOSQL_INJECTION,\$ne.*?:,MongoDB operator,high,high,25
+XXE_INJECTION,<!ENTITY.*?SYSTEM,XXE entity,critical,high,30
+CRLF_INJECTION,%0d%0a,CRLF characters,high,high,25
+LFI_RFI,php://filter,PHP wrapper,critical,high,30
